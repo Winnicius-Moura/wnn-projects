@@ -1,0 +1,71 @@
+name: 'portfolio'
+
+services: 
+  postgres:
+    container_name: pg-portfolio
+    image: postgres:15
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker_pass
+      POSTGRES_DB: portfolio
+      PGDATA: /data/postgres
+    volumes:
+      - ./data/pg:/data/postgres
+    networks:
+      - portfolio-network
+  
+  redis:
+    container_name: redis-portfolio
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --requirepass portfolio
+    ports:
+      - 6379:6379
+    networks:
+      - portfolio-network
+  
+  portfolio-api:
+    container_name: portfolio-api
+    build:
+      context: .
+      dockerfile: wnn-portofolio/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+    environment:
+      DATABASE_URL: "postgresql://postgres:docker_pass@postgres:5432/portfolio?schema=public"
+      REDIS_URL: "redis://:portfolio@redis:6379"
+      NODE_ENV: "production"
+      PORT: 3001
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - portfolio-network
+  
+  portfolio-web:
+    container_name: portfolio-web
+    build:
+      context: .
+      dockerfile: apps/portfolio-web/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: "production"
+      PORT: 3000
+      NEXT_PUBLIC_API_URL: "http://portfolio-api:3001"
+    depends_on:
+      - portfolio-api
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  postgres-data:

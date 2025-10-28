@@ -8,6 +8,9 @@
     },
     {
       "path": "@wnn-projects/clean-cache-control-jest-app"
+    },
+    {
+      "path": "./wnn-portofolio"
     }
   ]
 }
