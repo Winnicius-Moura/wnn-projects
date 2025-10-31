@@ -506,3 +506,107 @@ summary svg {
     font-size: 1.5rem;
   }
 }
+
+/* FAB (Floating Action Button) Styles */
+.fab {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+.fab-flower {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  display: block !important;
+}
+
+.fab-flower .fab-trigger {
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(10px);
+}
+
+.fab-flower .fab-main-action {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0) rotate(180deg);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fab-flower .tooltip {
+  position: absolute;
+  transform: scale(0) translate(0, 0);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Posicionamento dos botões quando FAB está aberto */
+.fab-flower .tooltip:nth-child(3) {
+  top: -5rem;
+  left: -1rem;
+  transition-delay: 0.1s;
+}
+
+.fab-flower .tooltip:nth-child(4) {
+  top: -4rem;
+  left: -4rem;
+  transition-delay: 0.15s;
+}
+
+.fab-flower .tooltip:nth-child(5) {
+  top: -1rem;
+  left: -5rem;
+  transition-delay: 0.2s;
+}
+
+/* Estados quando FAB está aberto */
+.fab-flower.fab-open .fab-trigger {
+  transform: scale(0) rotate(-180deg);
+  opacity: 0;
+}
+
+.fab-flower.fab-open .fab-main-action {
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+.fab-flower.fab-open .tooltip {
+  transform: scale(1) translate(0, 0);
+  opacity: 1;
+}
+
+/* Efeitos hover */
+.fab-flower .btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade do FAB */
+@media (max-width: 768px) {
+  .fab {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  
+  .fab-flower .tooltip:nth-child(3) {
+    top: -4rem;
+    left: -0.5rem;
+  }
+
+  .fab-flower .tooltip:nth-child(4) {
+    top: -3rem;
+    left: -3rem;
+  }
+
+  .fab-flower .tooltip:nth-child(5) {
+    top: -0.5rem;
+    left: -4rem;
+  }
+}
