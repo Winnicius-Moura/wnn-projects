@@ -410,3 +410,99 @@ summary svg {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Portfolio Custom Styles */
+.portfolio-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.portfolio-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Gradiente roxo para preto */
+  background: linear-gradient(135deg, #8B5CF6 0%, #5B21B6 25%, #2D1B69 50%, #1F2937 75%, #000000 100%);
+  /* Imagem capa.png por cima do gradiente */
+  background-image: url('/capa.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Blend mode para misturar a imagem com o gradiente */
+  background-blend-mode: overlay;
+  z-index: 1;
+}
+
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+
+.lottie-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; 
+  max-width: 600px;
+  height: auto;
+}
+
+.fallback-text {
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.fallback-text h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  animation: pulse 2s infinite;
+  background: linear-gradient(45deg, #ffffff, #e2e8f0, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .portfolio-content {
+    padding: 1rem;
+  }
+  
+  .fallback-text h1 {
+    font-size: 2rem;
+  }
+  
+  .lottie-container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .fallback-text h1 {
+    font-size: 1.5rem;
+  }
+}
