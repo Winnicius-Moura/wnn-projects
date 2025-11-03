@@ -9,11 +9,13 @@ html {
   line-height: 1.5;
   tab-size: 4;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   font-family: inherit;
   line-height: inherit;
   margin: 0;
+  overflow-x: hidden;
 }
 h1,
 h2,
@@ -415,12 +417,13 @@ summary svg {
 .portfolio-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .portfolio-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -432,6 +435,7 @@ summary svg {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   /* Blend mode para misturar a imagem com o gradiente */
   background-blend-mode: overlay;
   z-index: 1;
@@ -440,13 +444,8 @@ summary svg {
 .portfolio-content {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 100%;
-  padding: 2rem;
+  min-height: 100vh;
 }
 
 .lottie-container {
@@ -456,6 +455,7 @@ summary svg {
   width: 100%; 
   max-width: 600px;
   height: auto;
+  margin: 0 auto;
 }
 
 .fallback-text {
@@ -609,4 +609,109 @@ summary svg {
     top: -0.5rem;
     left: -4rem;
   }
+}
+
+/* Estilos para a grade de projetos */
+.projects-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.projects-grid-background {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .projects-grid-background {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.project-card {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  will-change: filter, opacity;
+}
+
+.project-card:hover {
+  filter: blur(6px);
+  opacity: 0.8;
+}
+
+.projects-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.projects-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+}
+
+.projects-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 768px) {
+  .projects-title {
+    font-size: 4rem;
+  }
+}
+
+.projects-button {
+  padding: 1.5rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.projects-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Scroll utilities */
+.enable-scroll {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.disable-scroll {
+  overflow: hidden !important;
+}
+
+/* Seção com scroll */
+section {
+  position: relative;
+  width: 100%;
 }
