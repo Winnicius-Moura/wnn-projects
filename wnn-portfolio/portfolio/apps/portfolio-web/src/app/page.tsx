@@ -65,7 +65,7 @@ export default function Index() {
   return (
     <div className="portfolio-container" data-theme={currentTheme}>
       <div
-        className="portfolio-background"
+        className=""
         style={{
           backgroundImage: `url('/${currentBackground}')`,
           transition: 'background-image 0.5s ease-in-out'
@@ -79,13 +79,12 @@ export default function Index() {
             currentBackground={currentBackground}
           />
         </div>
-       
+
 
         {/* Session projects - Container com posição relativa */}
-        <div
-          className='h-full w-full relative'
-        >
+        <div className='h-full w-full relative'>
           {/* Projects Grid */}
+
           <ProjectsGrid
             projectImages={projectImages}
             currentBackground={currentBackground}
@@ -98,7 +97,7 @@ export default function Index() {
               className="absolute inset-0 flex items-center justify-center z-50"
               style={{
                 backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                backdropFilter: 'blur(10px)',
+                backdropFilter: 'blur(8px)',
                 animation: 'fadeIn 0.3s ease-in-out'
               }}
             >
@@ -116,15 +115,12 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Floating Action Button */}
       <FloatingActionButton
         onThemeChange={handleThemeChange}
         onBackgroundChange={handleBackgroundChange}
         currentBackground={currentBackground}
         currentTheme={currentTheme}
       />
-
-
 
     </div>
   );
