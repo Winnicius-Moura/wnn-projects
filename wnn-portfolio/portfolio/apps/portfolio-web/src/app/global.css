@@ -700,6 +700,25 @@ summary svg {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
+/* Animação fadeIn para overlay da animação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 /* Scroll utilities */
 .enable-scroll {
   overflow-y: auto !important;

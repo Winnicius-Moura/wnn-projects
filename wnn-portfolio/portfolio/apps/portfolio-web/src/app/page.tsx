@@ -13,7 +13,6 @@ export default function Index() {
   const [currentBackground, setCurrentBackground] = useState('capa.png');
   const [currentTheme, setCurrentTheme] = useState('dark');
   const [showAnimation, setShowAnimation] = useState(false);
-  const [animationCompleted, setAnimationCompleted] = useState(false);
   const [showProjectsGrid, setShowProjectsGrid] = useState(false);
 
   // Array com as imagens dos projetos
@@ -52,14 +51,15 @@ export default function Index() {
 
   // Função chamada quando a animação termina
   const handleAnimationComplete = () => {
-    setAnimationCompleted(true);
-    setShowAnimation(false);
+    // Quando a animação termina, apenas a esconde
+    setTimeout(() => {
+      setShowAnimation(false);
+    }, 500); // Pequeno delay para suavizar a transição
   };
 
   // Função para o botão "Ver Projetos" na grade
   const handleViewProjects = () => {
     setShowAnimation(true);
-    setShowProjectsGrid(false);
   };
 
   return (
@@ -73,60 +73,47 @@ export default function Index() {
       ></div>
 
       <div className="portfolio-content">
-        {showAnimation && animationData && !animationCompleted ? (
-          <div className="lottie-container">
-            <Lottie
-              animationData={animationData}
-              loop={false}
-              autoplay={true}
-              onComplete={handleAnimationComplete}
-            />
-          </div>
-        ) : animationCompleted ? (
-          <div className="fallback-text">
-            <h1>Work Experiences</h1>
-            <p className="mt-4 text-white/80">
-              Experiências profissionais
-            </p>
-            <button
-              onClick={() => {
-                setAnimationCompleted(false);
-                setShowAnimation(false);
-              }}
-              className={`mt-8 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 ${currentBackground === 'capa.png'
-                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700'
-                : 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:from-blue-700 hover:to-indigo-800'
-                }`}
+        <div className='h-screen'>
+          <Header
+            onProjectsClick={handleProjectsClick}
+            currentBackground={currentBackground}
+          />
+        </div>
+       
+
+        {/* Session projects - Container com posição relativa */}
+        <div
+          className='h-full w-full relative'
+        >
+          {/* Projects Grid */}
+          <ProjectsGrid
+            projectImages={projectImages}
+            currentBackground={currentBackground}
+            onViewProjects={handleViewProjects}
+          />
+
+          {/* Animação sobreposta ao grid */}
+          {showAnimation && animationData && (
+            <div
+              className="absolute inset-0 flex items-center justify-center z-50"
               style={{
-                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.3)',
-                backdropFilter: 'blur(10px)'
+                backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                backdropFilter: 'blur(10px)',
+                animation: 'fadeIn 0.3s ease-in-out'
               }}
             >
-              Voltar aos Projetos
-            </button>
-          </div>
-        ) : (
-          <>
-
-            <Header
-              onProjectsClick={handleProjectsClick}
-              currentBackground={currentBackground}
-            />
-            
-            {/* session projects */}
-            <div className='h-[500px] my-96 w-full absolute'> 
-              <ProjectsGrid
-                projectImages={projectImages}
-                currentBackground={currentBackground}
-                onViewProjects={handleViewProjects}
-              />
+              <div className="w-full h-full">
+                <Lottie
+                  animationData={animationData}
+                  loop={false}
+                  autoplay={true}
+                  onComplete={handleAnimationComplete}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
             </div>
-
-
-
-
-          </>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Floating Action Button */}
