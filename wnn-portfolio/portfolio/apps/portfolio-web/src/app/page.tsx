@@ -81,9 +81,7 @@ export default function Index() {
         </div>
 
 
-        {/* Session projects - Container com posição relativa */}
-        <div className='h-full w-full relative'>
-          {/* Projects Grid */}
+        <div className='h-full w-full relative justify-center items-center mx-auto p-8'>
 
           <ProjectsGrid
             projectImages={projectImages}
@@ -91,23 +89,20 @@ export default function Index() {
             onViewProjects={handleViewProjects}
           />
 
-          {/* Animação sobreposta ao grid */}
           {showAnimation && animationData && (
             <div
               className="absolute inset-0 flex items-center justify-center z-50"
               style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                backdropFilter: 'blur(8px)',
                 animation: 'fadeIn 0.3s ease-in-out'
               }}
             >
-              <div className="w-full h-full">
+              <div className="w-full h-full rounded-lg">
                 <Lottie
                   animationData={animationData}
                   loop={false}
                   autoplay={true}
                   onComplete={handleAnimationComplete}
-                  style={{ width: '100%', height: '100%' }}
+                  style={{ width: '100%', height: '100%', }}
                 />
               </div>
             </div>

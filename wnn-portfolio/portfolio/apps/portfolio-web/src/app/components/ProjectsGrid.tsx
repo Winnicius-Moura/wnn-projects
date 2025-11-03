@@ -19,7 +19,7 @@ export default function ProjectsGrid({
         ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700'
         : 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:from-blue-700 hover:to-indigo-800'
         }`}>Projetos</button>
-      <div className="w-full h-1/2 grid grid-cols-2 md:grid-cols-4 gap-4 ">
+      <div className="w-full h-full grid grid-cols-2 md:grid-cols-4 gap-4 ">
         {projectImages.slice(0, 8).map((image, index) => (
           <div
             key={index}
