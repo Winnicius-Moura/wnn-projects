@@ -64,7 +64,6 @@ export default function Index() {
 
   return (
     <div className="portfolio-container" data-theme={currentTheme}>
-      {/* Background com gradiente e imagem dinâmica */}
       <div
         className="portfolio-background"
         style={{
@@ -73,7 +72,6 @@ export default function Index() {
         }}
       ></div>
 
-      {/* Conteúdo centralizado */}
       <div className="portfolio-content">
         {showAnimation && animationData && !animationCompleted ? (
           <div className="lottie-container">
@@ -88,7 +86,7 @@ export default function Index() {
           <div className="fallback-text">
             <h1>Work Experiences</h1>
             <p className="mt-4 text-white/80">
-              Experiências profissionais concluídas!
+              Experiências profissionais
             </p>
             <button
               onClick={() => {
@@ -109,12 +107,14 @@ export default function Index() {
           </div>
         ) : (
           <>
+
             <Header
               onProjectsClick={handleProjectsClick}
               currentBackground={currentBackground}
             />
-
-            <div className='h-[500px] my-96 w-full absolute'>
+            
+            {/* session projects */}
+            <div className='h-[500px] my-96 w-full absolute'> 
               <ProjectsGrid
                 projectImages={projectImages}
                 currentBackground={currentBackground}

@@ -15,6 +15,10 @@ export default function ProjectsGrid({
 
   return (
     <div className="flex items-center justify-center">
+      <button onClick={onViewProjects} className={`mt-8 px-8 py-4 absolute z-50 text-center btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl rounded-md text-lg font-semibold  transition-all duration-300 transform hover:scale-105 ${currentBackground === 'capa.png'
+        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700'
+        : 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:from-blue-700 hover:to-indigo-800'
+        }`}>Projetos</button>
       <div className="w-10/12 h-1/2 grid grid-cols-2 md:grid-cols-4 gap-4 p-8">
         {projectImages.slice(0, 8).map((image, index) => (
           <div

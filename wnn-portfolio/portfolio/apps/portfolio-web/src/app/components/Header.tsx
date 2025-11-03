@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export default function Header({ onProjectsClick, currentBackground }: HeaderProps) {
   return (
-    <header className="flex flex-col items-center justify-center text-center px-6 pt-20">
+    <header className="flex flex-col items-center justify-center pt-80 text-center">
       {/* Nome no topo */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
