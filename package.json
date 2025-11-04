@@ -42,7 +42,7 @@
     "packages/*",
     "clean-cache-control-jest-app",
     "clean-cache-control-jest-app-e2e",
-    "wnn-portofolio"
+    "wnn-portfolio"
   ],
   "dependencies": {
     "@prisma/client": "^6.18.0",

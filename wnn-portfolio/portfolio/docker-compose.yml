@@ -31,7 +31,7 @@ services:
     container_name: portfolio-api
     build:
       context: .
-      dockerfile: wnn-portofolio/Dockerfile
+      dockerfile: wnn-portifolio/Dockerfile
     restart: unless-stopped
     ports:
       - 3001:3001
