@@ -4,6 +4,7 @@ import Lottie from 'lottie-react'
 import { useEffect, useState } from 'react'
 import FloatingActionButton from './components/FloatingActionButton'
 import Header from './components/Header'
+import ProfileCard from './components/ProfileCard'
 import ProjectsGrid from './components/ProjectsGrid'
 
 
@@ -48,7 +49,7 @@ export default function Index() {
     }, 700)
   }
 
- 
+
   const handleViewProjects = () => {
     setShowAnimation(true)
   }
@@ -61,7 +62,7 @@ export default function Index() {
       }}>
       </div>
 
-      <div className="portfolio-content">
+      <div className="portfolio-content bg-neutral">
         <div className='h-screen'>
           <Header
             onProjectsClick={handleProjectsClick}
@@ -102,6 +103,9 @@ export default function Index() {
         currentBackground={currentBackground}
         currentTheme={currentTheme}
       />
+
+      {/* Profile Card com toggle no canto esquerdo */}
+      <ProfileCard />
     </div>
   )
 }
